@@ -16,7 +16,7 @@ jobs:
         apt-get update
         apt-get install curl wget libssl1.1 -y 
     
-    # NEW STEP: Install Java (OpenJDK 11 is a common, stable version)
+    ## NEW STEP: Install Java (OpenJDK 11 is a common, stable version)
     - name: Install Java for Embold Scanner
       run: |
         apt-get install openjdk-11-jre -y

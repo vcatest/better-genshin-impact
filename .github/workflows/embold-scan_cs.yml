@@ -32,6 +32,6 @@ jobs:
         curl https://v1.embold.io/nfs/CLI/browserstack-codequality-scanner.tar.gz -o browserstack-codequality-scanner-archive.tar.gz
         tar xvf browserstack-codequality-scanner-archive.tar.gz
         echo "Download and extract BrowserStack CQ Scanner done"
-        curl --silent --location --request GET "http://18.184.13.138:5050/api/v1/repositories/7cbe09aa87333fb3c3fb5dcd0eb26a3b/scans/config/download" --header "Authorization:Bearer ${{ secrets.EMBOLD_SCAN_TOKEN_CS}}" -o repository-configuration.json
+        curl --silent --location --request GET "http://63.176.47.15:5054/api/v1/repositories/7cbe09aa87333fb3c3fb5dcd0eb26a3b/scans/config/download" --header "Authorization:Bearer ${{ secrets.EMBOLD_SCAN_TOKEN_CS}}" -o repository-configuration.json
         echo "Download repository configuration file done"
-        ./browserstack-codequality-scanner/bin/embold-scanner analyse -u http://18.184.13.138:5050 -t ${{ secrets.EMBOLD_SCAN_TOKEN_CS }} -r 7cbe09aa87333fb3c3fb5dcd0eb26a3b -b . -d ./embold-data -c ./repository-configuration.json -l ./embold-log -sh $GITHUB_WORKSPACE/embold-scanner-home -v
+        ./browserstack-codequality-scanner/bin/embold-scanner analyse -u http://63.176.47.15:5054 -t ${{ secrets.EMBOLD_SCAN_TOKEN_CS }} -r 7cbe09aa87333fb3c3fb5dcd0eb26a3b -b . -d ./embold-data -c ./repository-configuration.json -l ./embold-log -sh $GITHUB_WORKSPACE/embold-scanner-home -v

@@ -40,20 +40,20 @@ jobs:
 
     - name: Embold Analyse
       run: |
-        curl https://v1.embold.io/nfs/CLI/browserstack-codequality-scanner.tar.gz -o browserstack-codequality-scanner.tar.gz
+        curl ${{ vars.EMBOLD_SCANNER_URL}} -o browserstack-codequality-scanner.tar.gz
         tar xvf browserstack-codequality-scanner.tar.gz
         echo "BrowserStack CQ Scanner downloaded"
 
         curl --silent --location --request GET \
-          "http://63.176.47.15:5054/api/v1/repositories/7cbe09aa87333fb3c3fb5dcd0eb26a3b/scans/config/download" \
-          --header "Authorization:Bearer ${{ secrets.EMBOLD_SCAN_TOKEN_CS }}" \
+          "${{ vars.EMBOLD_URL_CS}}/api/v1/repositories/7cbe09aa87333fb3c3fb5dcd0eb26a3b/scans/config/download" \
+          --header "Authorization:Bearer ${{ secrets.EMBOLD_TOKEN_CS}}" \
           -o repository-configuration.json
 
         echo "Repository configuration downloaded"
 
         ./browserstack-codequality-scanner/bin/embold-scanner analyse \
-          -u http://63.176.47.15:5054 \
-          -t ${{ secrets.EMBOLD_SCAN_TOKEN_CS }} \
+          -u ${{ vars.EMBOLD_URL_CS}} \
+          -t ${{ secrets.EMBOLD_TOKEN_CS}} \
           -r 7cbe09aa87333fb3c3fb5dcd0eb26a3b \
           -b . \
           -d ./embold-data \

@@ -58,6 +58,4 @@ jobs:
           -b . \
           -d ./embold-data \
           -c ./repository-configuration.json \
-          -l ./embold-log \
-          -sh $GITHUB_WORKSPACE/embold-scanner-home \
           -v

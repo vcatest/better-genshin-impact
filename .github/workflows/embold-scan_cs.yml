@@ -59,3 +59,11 @@ jobs:
           -d ./embold-data \
           -c ./repository-configuration.json \
           -v
+
+    - name: Archive logs and binaries
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: parsed_files
+        path: |
+          /__w/DevToys/DevToys/embold-data/**/*.txt
